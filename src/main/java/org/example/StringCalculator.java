@@ -8,8 +8,12 @@ public class StringCalculator {
             throw new RuntimeException("Up to 2 numbers separated by comma (,) are allowed");
         } else {
             for (String number : numbersArray) {
-                if (!number.trim().isEmpty()) {
-                    returnValue+=Integer.parseInt(number.trim()); // If it is not a number, parseInt will throw an exception
+                int integer = Integer.parseInt(number.trim());
+                if (integer < 0) {
+                    throw new RuntimeException("Negatives not allowed");
+                }
+                if (!number.trim().isEmpty() && integer < 1000) {
+                    returnValue+=integer; // If it is not a number, parseInt will throw an exception
                 }
             }
         }
